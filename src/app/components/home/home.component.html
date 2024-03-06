@@ -1,0 +1,39 @@
+<div *ngIf="isLoading"
+    class="d-flex justify-content-center align-items-center loading bg-white position-fixed start-0 end-0 top-0 bottom-0">
+    <span class="loader"></span>
+</div>
+
+<div>
+
+    <app-main-slider></app-main-slider>
+
+<app-category-slider></app-category-slider>
+
+<div class="w-75 mx-auto">
+    <input [(ngModel)]="term" class="form-control " placeholder="Search By Title" type="text">
+</div>
+
+<div class="row mt-5 g-md-4">
+
+    <div *ngFor="let product of productList|search:term" class="col-md-2">
+        <div  class="product overflow-hidden p-2 cursor-pointer">
+            <div [routerLink]="['/productdetails', product._id]">
+                <img class="w-100" [src]="product.imageCover" alt="">
+                <p class="pt-2 font-sm fw-bold text-main m-0">{{product.category.name}}</p>
+                <h3 class="h6 py-1 fw-bolder">{{product.title.split(' ').splice(0,2).join(" ")}}</h3>
+                <div class=" d-flex justify-content-between">
+                <span class="fw-bold font-sm">{{product.price}} EGP</span>
+                <span>
+                    <i class="fa fa-star rating-color"></i>
+                    {{product.ratingsAverage}}
+                </span>
+                </div>
+            </div>
+            
+            <button (click)="addProductToCart(product._id)" class="my-1 bg-main btn text-white w-100"><i
+                    class="fa fa-plus"></i> Add</button>
+        </div>
+    </div>
+</div>
+</div>
+

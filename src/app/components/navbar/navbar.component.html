@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/register']">
+            <img src="assets/freshcart-logo.svg" alt="FreshCartLogo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li *ngIf="isLogIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['bg-main','text-white']">Home</a>
+                </li>
+                <li *ngIf="isLogIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/cart']" [routerLinkActive]="['bg-main','text-white']">Cart</a>
+                </li>
+                <li *ngIf="isLogIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/products']"
+                        [routerLinkActive]="['bg-main','text-white']">Products</a>
+                </li>
+                <li *ngIf="isLogIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/categories']"
+                        [routerLinkActive]="['bg-main','text-white']">Categories</a>
+                </li>
+                <li *ngIf="isLogIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/brands']"
+                        [routerLinkActive]="['bg-main','text-white']">Brands</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item d-flex align-items-center">
+                    <a href="#" class="pe-3"><i class="fa fa-brands fa-facebook"></i></a>
+                    <a href="#" class="pe-3"><i class="fa fa-brands fa-instagram"></i></a>
+                    <a href="#" class="pe-3"><i class="fa fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="pe-3"><i class="fa fa-brands fa-twitter"></i></a>
+                    <a href="#" class="pe-3"><i class="fa fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="pe-3"><i class="fa fa-brands fa-youtube"></i></a>
+                </li>
+                <li *ngIf="!isLogIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/register']"
+                        [routerLinkActive]="['bg-main','text-white']">Register</a>
+                </li>
+                <li *ngIf="!isLogIn" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/login']"
+                        [routerLinkActive]="['bg-main','text-white']">LogIn</a>
+                </li>
+
+                <li (click)="_AuthService.logOut()" *ngIf="isLogIn" class="nav-item">
+                    <a class="nav-link cursor-pointer" [routerLinkActive]="['bg-main','text-white']">LogOut</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link position-relative" [routerLink]="['/cart']">
+                        <i class="fa fa-shopping-cart text-main fs-4 p-1"></i>
+                        <span class="badge bg-main position-absolute top-0 end-0 ">{{_CartService.noOfCartItems.getValue()}}</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

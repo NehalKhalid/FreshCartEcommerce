@@ -1,0 +1,15 @@
+<div *ngIf="isLoading"
+    class="d-flex justify-content-center align-items-center loading bg-white position-fixed start-0 end-0 top-0 bottom-0">
+    <span class="loader"></span>
+</div>
+
+<div class="row my-5 g-5">
+    <p class="fw-bolder text-main text-center fs-1">All Brands</p>
+    <div *ngFor="let brand of brandList" class="col-md-3">
+        <div class="brand border cursor-pointer overflow-hidden rounded-2">
+            <img class="w-100" [src]="brand.image" [alt]="brand.name">
+            <h4 class="p-3 fw-bolder text-center ">{{brand.name}}</h4>
+        </div>
+    </div>
+</div>
+

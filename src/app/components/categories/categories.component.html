@@ -1,0 +1,13 @@
+<div *ngIf="isLoading"
+    class="d-flex justify-content-center align-items-center loading bg-white position-fixed start-0 end-0 top-0 bottom-0">
+    <span class="loader"></span>
+</div>
+
+<div class="row my-5 g-5">
+    <div *ngFor="let category of categoryList" class="col-md-4">
+        <div class="category cursor-pointer overflow-hidden rounded-2">
+            <img height="400" class="w-100" [src]="category.image" [alt]="category.name">
+            <h4 class="p-3 fw-bolder text-center text-main">{{category.name}}</h4>
+        </div>
+    </div>
+</div>

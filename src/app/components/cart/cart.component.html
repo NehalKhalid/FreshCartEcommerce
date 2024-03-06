@@ -1,0 +1,37 @@
+<div *ngIf="isLoading"
+    class="d-flex justify-content-center align-items-center loading bg-white position-fixed start-0 end-0 top-0 bottom-0">
+    <span class="loader"></span>
+</div>
+
+<div *ngIf="errMessage && productList.length === 0" class="alert my-5 alert-danger text-center ">
+    <p>{{errMessage}}</p>
+</div>
+
+<div  *ngIf="!errMessage && productList.length !== 0" class="my-5">
+    <div class="my-3 text-main d-flex justify-content-between">
+        <p><span class="fw-bolder">Number Of Cart Items : </span>{{numOfCartItems}}</p>
+        <p><span class="fw-bolder">Total Price : </span>{{totalPrice}}</p>
+    </div>
+    <button (click)="clearCart()" class="btn btn-outline-danger d-block ms-auto">Clear Cart</button>
+    <div *ngFor="let product of productList" class="row my-5 shadow-sm p-2">
+        <div class="col-md-1">
+            <img class="w-100" [src]="product.product.imageCover" alt="">
+        </div>
+        <div class="col-md-11 d-flex justify-content-between ">
+            <div>
+                <h5 class="h6 fw-bold">{{product.product.title}}</h5>
+                <p>Price : {{product.price}}</p>
+                <span (click)="removeProductFromCart(product.product.id)"
+                    class="d-block text-danger cursor-pointer">Remove Product <i class="fa fa-trash"></i></span>
+            </div>
+            <div>
+                <button (click)="updateProductQuantityCart(product.product.id,product.count+1)"
+                    class="bg-main btn text-white"><i class="fa fa-plus"></i></button>
+                <span class="p-4">{{product.count}}</span>
+                <button (click)="updateProductQuantityCart(product.product.id,product.count-1)"
+                    class="bg-main btn text-white"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+    </div>
+    <button [routerLink]="['/shippingAddress',cartId]"  class="btn my-4 bg-main text-white d-block ms-auto">Pay</button>
+</div>
